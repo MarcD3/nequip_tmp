@@ -1,0 +1,41 @@
+
+model_builders:
+ - nequip.model.model_tools.DeploySumOfTwoModels
+
+# for example, for a potential
+sum_in_keys:
+ - total_energy
+ - forces
+ - virial
+ - stress
+
+# give the original training configs
+model1_config: minimal.yaml
+model2_config: minimal.yaml
+
+# override them to include loading trained weights
+model1_overrides:
+  model_builders:
+    model_builders:
+      - SimpleIrrepsConfig
+      - EnergyModel
+      - PerSpeciesRescale
+      - StressForceOutput
+      - RescaleEnergyEtc
+      # !! NEW !!
+      - load_model_state
+    load_model_state: results/aspirin/minimal/best_model.pth
+
+# do the same for model2
+model2_overrides:
+  model_builders:
+    model_builders:
+      - SimpleIrrepsConfig
+      - EnergyModel
+      - PerSpeciesRescale
+      - StressForceOutput
+      - RescaleEnergyEtc
+      # !! NEW !!
+      - load_model_state
+    load_model_state: results/aspirin/minimal/best_model.pth
+
