@@ -8,6 +8,7 @@ from ._weight_init import (
 )
 from ._gmm import GaussianMixtureModelUncertainty
 from ._pair_potential import PairPotential, PairPotentialTerm
+from ._mts import AllegroMTS
 
 from ._build import model_from_config
 
@@ -28,5 +29,6 @@ __all__ = [
     model_from_config,
     PairPotential,
     PairPotentialTerm,
+    AllegroMTS,
     builder_utils,
 ]
